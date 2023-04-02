@@ -27,6 +27,11 @@ class Post
         return nl2br(htmlentities(Text::excerpt($this->content, 60)));
     }
 
+    public function getFormattedContent(): ?string
+    {
+        return nl2br($this->content);
+    }
+
     public function getCreatedAt(): DateTime
     {
         return new DateTime($this->created_at);

@@ -16,12 +16,12 @@ $posts = [];
 $categories = [];
 
 for ($i = 0; $i < 50; $i++) {
-    $pdo->exec("INSERT INTO post SET name='Article #$i', slug='artcile-$i', content='lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ', created_at='2020-12-24 15:00:00'");
+    $pdo->exec("INSERT INTO post SET name='Article #$i', slug='artcil$i', content='lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ', created_at='2020-12-24 15:00:00'");
     $posts[] = $pdo->lastInsertId();
 }
 
 for ($i = 0; $i < 5; $i++) {
-    $pdo->exec("INSERT INTO category SET name='Article #$i', slug='artcile-$i'");
+    $pdo->exec("INSERT INTO category SET name='Article #$i', slug='artcile$i'");
     $categories[] = $pdo->lastInsertId();
 }
 

@@ -11,7 +11,7 @@
 
 <body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a href="#" class="navbar-brand">The Site</a>
+        <a href="/" class="navbar-brand">The Site</a>
     </nav>
 
     <div class="container mt-4">

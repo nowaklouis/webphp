@@ -1,22 +1,15 @@
 <?php
 
 use App\Connect;
-use App\Model\Post;
 use App\Model\Category;
+use App\Table\PostTable;
 
 $title = 'L\'article';
 $id = (int)$params['id'];
 $slug = $params['slug'];
 
 $pdo = Connect::getPDO();
-$query = $pdo->prepare('SELECT * FROM post WHERE id= :id');
-$query->execute(['id' => $id]);
-$query->setFetchMode(PDO::FETCH_CLASS, Post::class);
-$post = $query->fetch();
-
-if ($post === false) {
-    throw new Exception('Aucun article correspondant');
-}
+$post = (new PostTable($pdo))->find($id);
 
 if ($post->getSlug() !== $slug) {
     $url = $router->url('post', ['slug' => $post->getSlug(), 'id' => $id]);

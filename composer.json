@@ -6,6 +6,7 @@
   },
   "require": {
     "altorouter/altorouter": "^2.0",
-    "filp/whoops": "^2.15"
+    "filp/whoops": "^2.15",
+    "vlucas/valitron": "^1.4"
   }
 }

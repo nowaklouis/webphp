@@ -4,7 +4,7 @@ namespace App\Table;
 
 use App\PaginatedQuery;
 use App\Model\Post;
-
+use ParseError;
 
 class PostTable extends Table
 {
@@ -38,5 +38,20 @@ class PostTable extends Table
 
         $posts = $paginatedQuery->getItems(Post::class);
         return [$posts, $paginatedQuery];
+    }
+
+    public function delete(int $id)
+    {
+        $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = ?");
+        $query->execute([$id]);
+    }
+
+    public function update(Post $post): void
+    {
+        $query = $this->pdo->prepare("UPDATE {$this->table} SET name= :name WHERE id = :id");
+        $query->execute([
+            'id' => $post->getId(),
+            'name' => $post->getName()
+        ]);
     }
 }

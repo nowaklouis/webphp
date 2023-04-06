@@ -4,6 +4,8 @@ $title = "edition";
 use App\Connect;
 use App\Table\PostTable;
 use Valitron\Validator;
+use App\HTML\Form;
+use App\Validators\PostValidator;
 
 $pdo = Connect::getPDO();
 $postTable = new PostTable($pdo);
@@ -13,16 +15,16 @@ $errors = [];
 
 if (!empty($_POST)) {
     Validator::lang('fr');
-    $v = new Validator($_POST);
-    $v->labels(array(
-        'name' => 'Titre',
-        'content' => 'contenu'
-    ));
-    $v->rule('required', 'name');
+    $v = new PostValidator($_POST);
+
     if (empty($_POST)) {
         $errors['name'][] = 'Le champs titre ne peut etre vide';
     }
-    $post->setName($_POST['name']);
+    $post
+        ->setName($_POST['name'])
+        ->setContent($_POST['content'])
+        ->setSlug($_POST['slug'])
+        ->setCreatedAt($_POST['created_at']);
     if ($v->validate()) {
         $postTable->update($post);
         $success = true;
@@ -30,6 +32,8 @@ if (!empty($_POST)) {
         $errors = $v->errors();
     }
 }
+
+$form = new Form($post, $errors);
 
 ?>
 <?php if ($success) : ?>
@@ -43,14 +47,9 @@ if (!empty($_POST)) {
 <h1>Editer l'article <?= $post->getName() ?></h1>
 
 <form action="" method="POST">
-    <div class="form-group">
-        <label for="name">Titre</label>
-        <input type="text" class="form-control" <?= isset($errors['name']) ? 'is-invalide' : '' ?> name="name" value="<?= $post->getName() ?>" required>
-        <?php if (isset($errors['name'])) : ?>
-            <div class="invalid-feedback">
-                mauvaise saisie
-            </div>
-        <?php endif ?>
-    </div>
+    <?= $form->input('name', 'Titre') ?>
+    <?= $form->input('slug', 'URL') ?>
+    <?= $form->textarea('content', 'Contenu') ?>
+    <?= $form->input('created_at', 'date de creation') ?>
     <button class="btn btn-primary">Modifier</button>
 </form>

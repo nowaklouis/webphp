@@ -7,19 +7,25 @@ use \DateTime;
 
 class Post
 {
-    private int $id;
-    private string $name;
-    private string $content;
-    private string $slug;
+    private ?int $id = null;
+    private ?string $name = null;
+    private ?string $content = null;
+    private ?string $slug = null;
     private $created_at;
     private $categories;
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName()
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -30,7 +36,7 @@ class Post
         return $this;
     }
 
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }

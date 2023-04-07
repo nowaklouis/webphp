@@ -46,10 +46,4 @@ $form = new Form($post, $errors);
 
 <h1>Editer l'article <?= $post->getName() ?></h1>
 
-<form action="" method="POST">
-    <?= $form->input('name', 'Titre') ?>
-    <?= $form->input('slug', 'URL') ?>
-    <?= $form->textarea('content', 'Contenu') ?>
-    <?= $form->input('created_at', 'date de creation') ?>
-    <button class="btn btn-primary">Modifier</button>
-</form>
+<?php require '_form.php' ?>

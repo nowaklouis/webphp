@@ -57,4 +57,15 @@ class PostTable extends Table
             'created_at' => $post->getCreatedAt()->format('Y-m-d h:i:s'),
         ]);
     }
+
+    public function create(Post $post): void
+    {
+        $query = $this->pdo->prepare("INSERT INTO {$this->table} SET name= :name, slug= :slug, content= :content, created_at= :created_at");
+        $query->execute([
+            'name' => $post->getName(),
+            'slug' => $post->getSlug(),
+            'content' => $post->getContent(),
+            'created_at' => $post->getCreatedAt()->format('Y-m-d h:i:s'),
+        ]);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Connect;
 use App\Table\PostTable;
+use App\Auth;
 
 $title = 'Mon Blog';
 

@@ -14,6 +14,7 @@ list($posts, $pagination) = (new PostTable($pdo))->findPaginated();
     <div class="alert alert-success">Suppression effectuer</div>
 <?php endif ?>
 
+
 <table class="table table-striped">
     <thead>
         <th>#</th>
@@ -35,7 +36,6 @@ list($posts, $pagination) = (new PostTable($pdo))->findPaginated();
                         <button type="submit" class="btn btn-danger">Suppr</button>
                     </form>
                 </td>
-                <td></td>
             </tr>
         <?php endforeach ?>
     </tbody>

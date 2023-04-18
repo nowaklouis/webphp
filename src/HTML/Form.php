@@ -39,6 +39,19 @@ class Form
         HTML;
     }
 
+    public function inputPassword(string $key, string $label): string
+    {
+        $value = $this->getValue($key);
+
+        return <<<HTML
+        <div class="form-group">
+            <label for="field{$key}">{$label}</label>
+            <input type="password" id="field{$key}" class="{$this->getInputClass($key)}" name="{$key}" value="{$value}" required>
+            {$this->getErrorFeedback($key)}
+        </div> 
+        HTML;
+    }
+
     private function getValue(string $key): ?string
     {
         if (is_array($this->data)) {

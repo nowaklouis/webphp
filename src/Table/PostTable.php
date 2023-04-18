@@ -15,7 +15,7 @@ class PostTable extends Table
     public function findPaginated()
     {
         $paginatedQuery = new PaginatedQuery(
-            "SELECT * FROM post ORDER BY created_at DESC",
+            "SELECT * FROM post ORDER BY id DESC",
             "SELECT COUNT(id) FROM post",
             $this->pdo
         );
